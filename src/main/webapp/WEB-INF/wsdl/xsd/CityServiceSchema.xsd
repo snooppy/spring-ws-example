@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.dmitrykrivenko.cn.ua/schemas/CityServiceSchema"
+            xmlns="http://www.dmitrykrivenko.cn.ua/schemas/CityServiceSchema"
+            elementFormDefault="qualified">
+
+    <xsd:element name="GetTwoCitiesAndDistanceRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="param" type="xsd:string" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="GetTwoCitiesAndDistanceResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="response" type="xsd:string" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	
+    <xsd:element name="GetDistanceBetweenTwoCitiesRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="city1" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                <xsd:element name="city2" type="xsd:string" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="GetDistanceBetweenTwoCitiesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="response" type="xsd:int" minOccurs="1" maxOccurs="1" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

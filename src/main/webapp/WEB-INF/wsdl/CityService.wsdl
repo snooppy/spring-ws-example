@@ -1,0 +1,83 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.dmitrykrivenko.cn.ua/schemas/CityServiceSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.dmitrykrivenko.cn.ua/schemas/CityServiceSchema" targetNamespace="http://www.dmitrykrivenko.cn.ua/schemas/CityServiceSchema">
+    <wsdl:types>
+        <xsd:schema xmlns="http://www.dmitrykrivenko.cn.ua/schemas/CityServiceSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.dmitrykrivenko.cn.ua/schemas/CityServiceSchema">
+            <xsd:element name="GetTwoCitiesAndDistanceRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="param" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="GetTwoCitiesAndDistanceResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="response" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="GetDistanceBetweenTwoCitiesRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="city1" type="xsd:string"/>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="city2" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="GetDistanceBetweenTwoCitiesResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="response" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetTwoCitiesAndDistanceResponse">
+        <wsdl:part element="tns:GetTwoCitiesAndDistanceResponse" name="GetTwoCitiesAndDistanceResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetTwoCitiesAndDistanceRequest">
+        <wsdl:part element="tns:GetTwoCitiesAndDistanceRequest" name="GetTwoCitiesAndDistanceRequest"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDistanceBetweenTwoCitiesResponse">
+        <wsdl:part element="tns:GetDistanceBetweenTwoCitiesResponse" name="GetDistanceBetweenTwoCitiesResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDistanceBetweenTwoCitiesRequest">
+        <wsdl:part element="tns:GetDistanceBetweenTwoCitiesRequest" name="GetDistanceBetweenTwoCitiesRequest"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="CityService">
+        <wsdl:operation name="GetTwoCitiesAndDistance">
+            <wsdl:input message="tns:GetTwoCitiesAndDistanceRequest" name="GetTwoCitiesAndDistanceRequest"></wsdl:input>
+            <wsdl:output message="tns:GetTwoCitiesAndDistanceResponse" name="GetTwoCitiesAndDistanceResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDistanceBetweenTwoCities">
+            <wsdl:input message="tns:GetDistanceBetweenTwoCitiesRequest" name="GetDistanceBetweenTwoCitiesRequest"></wsdl:input>
+            <wsdl:output message="tns:GetDistanceBetweenTwoCitiesResponse" name="GetDistanceBetweenTwoCitiesResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CityServiceSoap11" type="tns:CityService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetTwoCitiesAndDistance">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="GetTwoCitiesAndDistanceRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="GetTwoCitiesAndDistanceResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDistanceBetweenTwoCities">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="GetDistanceBetweenTwoCitiesRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="GetDistanceBetweenTwoCitiesResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CityServiceService">
+        <wsdl:port binding="tns:CityServiceSoap11" name="CityServiceSoap11">
+            <soap:address location="/CityService/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

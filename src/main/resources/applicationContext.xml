@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd
+          http://www.springframework.org/schema/data/mongo
+          http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="cityServiceImpl" class="ua.cn.dmitrykrivenko.springwscityexample.CityServiceImpl" >
+        <constructor-arg ref="mongoTemplate" />
+    </bean>
+
+    <bean id="objectFactory" class="ua.cn.dmitrykrivenko.domain.ObjectFactory" />
+
+    <bean id="cityServiceEndPoint" class="ua.cn.dmitrykrivenko.springwscityexample.endpoint.CityServiceEndPoint">
+        <constructor-arg ref="cityServiceImpl" />
+        <constructor-arg ref="objectFactory" />
+    </bean>
+
+    <bean class="org.springframework.ws.soap.addressing.server.AnnotationActionEndpointMapping" />
+
+    <bean
+        class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
+        <constructor-arg ref="marshaller" />
+    </bean>
+
+    <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="ua.cn.dmitrykrivenko.domain" />
+    </bean>
+    
+    <mongo:mongo host="127.0.0.1" port="27017" />
+    <mongo:db-factory dbname="citydb" />
+ 
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+    </bean>
+
+</beans>

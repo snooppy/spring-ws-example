@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <import resource="classpath:applicationContext.xml"/>
+    
+    <!--Generate wsdl-->
+<!--    <bean id="cityService" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="schema"/>
+        <property name="portTypeName" value="CityService"/>
+        <property name="locationUri" value="/CityService/"/>
+    </bean>
+
+    <bean id="schema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="/WEB-INF/wsdl/xsd/CityServiceSchema.xsd"/>
+    </bean>-->
+    <bean id="cityService" class="org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition">
+        <property name="wsdl" value="WEB-INF/wsdl/CityService.wsdl"/>
+    </bean>
+
+</beans>
